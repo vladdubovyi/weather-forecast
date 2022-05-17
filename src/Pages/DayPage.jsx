@@ -1,18 +1,34 @@
-import React from 'react';
-import axios from 'axios';
-import SearchSection from '../Components/UI/SearchSection/SearchSection';
-import searchIcon from '../Images/searchIcon.png';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import NotFound from "./NotFound";
+import DayMainContent from "../Components/DayMainContent";
+import WeatherRepository from "../API/WeatherRepository";
 
 const DayPage = () => {
-    async function GetCurrentTemperatureInCity(cityName) {
-        let response = await axios.get("https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=2e094072b85da86618be8988a2f87f82");
-        console.log(response);
-      }
-      return (
-        <div>
-          <SearchSection icon={searchIcon} onClick={GetCurrentTemperatureInCity}/>
-        </div>
-      );
+  const cityName = useParams().name;
+  const [weatherData, setWeatherData] = useState();
+  const [isWeatherLoading, setIsWeatherLoading] = useState(false);
+
+  async function updateData() {
+    setIsWeatherLoading(true);
+    setWeatherData(await WeatherRepository.GetFullWeatherByCity(cityName));
+    setIsWeatherLoading(false);
+  }
+  useEffect(() => {
+    updateData();
+  }, [cityName]);
+
+  return (
+    <div className="container">
+      {isWeatherLoading ? (
+        <h1>Loading...</h1>
+      ) : weatherData == null ? (
+        <NotFound />
+      ) : (
+        <DayMainContent data={weatherData} />
+      )}
+    </div>
+  );
 };
 
 export default DayPage;

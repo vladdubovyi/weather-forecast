@@ -1,15 +1,18 @@
-import "./App.css";
+import "./Styles/App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import DayPage from "./Pages/DayPage";
 import SevenDayPage from "./Pages/SevenDayPage";
 import NotFound from "./Pages/NotFound";
+import NavMenu from "./Components/UI/NavMenu/NavMenu";
+import searchIcon from "./Images/searchIcon.png";
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <NavMenu icon={searchIcon} />
         <Routes>
-          <Route path="/:name" element={<DayPage />} />
+          <Route path="/Day/:name" element={<DayPage />} />
           <Route path="/7Day/:name" element={<SevenDayPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
