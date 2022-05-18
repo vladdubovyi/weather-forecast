@@ -25,7 +25,7 @@ const NavMenu = ({ icon }) => {
           <Link to={"/Day/" + cityName} className={classes.navItem}>
             <p>Today</p>
           </Link>
-          <Link to={"/7Day/" + cityName} className={classes.navItem}>
+          <Link to={"/5Day/" + cityName} className={classes.navItem}>
             <p>5-day forecast</p>
           </Link>
         </div>

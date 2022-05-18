@@ -1,6 +1,15 @@
 import axios from "axios";
 
 export default class WeatherRepository {
+  static async GetDailyWeatherByName(cityName) {
+    let response = await this.GetCurrentWeatherByCity(cityName);
+    if (response == null) return null;
+    response = await this.GetCurrentWeatherByCoords(
+      response.data.coord.lat,
+      response.data.coord.lon
+    );
+    return response;
+  }
   static async GetFullWeatherByCity(cityName) {
     let response = await this.GetCurrentWeatherByCity(cityName);
     if (response == null) return null;

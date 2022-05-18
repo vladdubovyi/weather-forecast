@@ -1,21 +1,29 @@
 import React from "react";
 import Utils from "../../Utilities/Utils";
+import { useNavigate } from "react-router-dom";
 
 const NearbySection = ({ data }) => {
-  console.log(data);
+  const navigate = useNavigate();
+  const redirectToPlace = (name) => {
+    navigate("/Day/" + name);
+  };
   return (
-    <div class="main-block nearby" id="mainBlockNearby">
-      <div class="wrapper">
-        <div class="block-header-wrapper">
-          <p class="blocks-header-text">NEARBY PLACES</p>
+    <div className="main-block nearby" id="mainBlockNearby">
+      <div className="wrapper">
+        <div className="block-header-wrapper">
+          <p className="blocks-header-text">NEARBY PLACES</p>
         </div>
       </div>
 
-      <div class="wrapper">
-        <div class="grid-nearby">
+      <div className="wrapper">
+        <div className="grid-nearby">
           {data.map((item) => {
             return (
-              <div class="grid-item">
+              <div
+                className="grid-item"
+                onClick={() => redirectToPlace(item.name)}
+                key={item.id}
+              >
                 <h2>{item.name}</h2>
                 <img
                   src={require("../../Images/WeatherIcons/" +

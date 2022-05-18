@@ -7,7 +7,6 @@ const HourlySection = ({ data }) => {
   for (let i = 1; i <= 6; i++) {
     currentTimes.push(Utils.NormalizeHours(new Date().getHours() + i));
   }
-
   return (
     <div className="main-block hourly" id="mainBlockHourly">
       <div className="wrapper">
@@ -57,37 +56,37 @@ const HourlySection = ({ data }) => {
             );
           })}
 
-          <div class="grid-item">
+          <div className="grid-item">
             <p>Temp</p>
           </div>
 
           {data.map((item) => {
             return (
-              <div class="grid-item">
+              <div className="grid-item">
                 <p>{Utils.GetCelciumFromKelvin(item.temp)}°C</p>
               </div>
             );
           })}
 
-          <div class="grid-item">
+          <div className="grid-item">
             <p>Real feel</p>
           </div>
 
           {data.map((item) => {
             return (
-              <div class="grid-item">
+              <div className="grid-item">
                 <p>{Utils.GetCelciumFromKelvin(item.feels_like)}°C</p>
               </div>
             );
           })}
 
-          <div class="grid-item">
+          <div className="grid-item">
             <p>Wind</p>
           </div>
 
           {data.map((item) => {
             return (
-              <div class="grid-item">
+              <div className="grid-item">
                 <p>{item.wind_speed} km/h</p>
               </div>
             );
