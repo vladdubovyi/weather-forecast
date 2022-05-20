@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import NotFound from "./NotFound";
 import DayMainContent from "../Components/DayMainContent";
 import WeatherRepository from "../API/WeatherRepository";
+import Loader from "../Components/UI/Loader/Loader";
 
 const DayPage = () => {
   const cityName = useParams().name;
@@ -21,7 +22,7 @@ const DayPage = () => {
   return (
     <div className="container">
       {isWeatherLoading ? (
-        <h1>Loading...</h1>
+        <Loader />
       ) : weatherData == null ? (
         <NotFound />
       ) : (

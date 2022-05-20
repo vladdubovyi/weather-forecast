@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import WeatherRepository from "../API/WeatherRepository";
 import NotFound from "./NotFound";
 import FiveDayMainContent from "../Components/FiveDayMainContent";
+import Loader from "../Components/UI/Loader/Loader";
 
 const FiveDayPage = ({ data }) => {
   const cityName = useParams().name;
@@ -20,7 +21,7 @@ const FiveDayPage = ({ data }) => {
   return (
     <div className="container">
       {isWeatherLoading ? (
-        <h1>Loading...</h1>
+        <Loader />
       ) : weatherData == null ? (
         <NotFound />
       ) : (
