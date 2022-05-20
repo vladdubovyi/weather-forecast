@@ -10,12 +10,12 @@ const DayPage = () => {
   const [weatherData, setWeatherData] = useState();
   const [isWeatherLoading, setIsWeatherLoading] = useState(false);
 
-  async function updateData() {
-    setIsWeatherLoading(true);
-    setWeatherData(await WeatherRepository.GetFullWeatherByCity(cityName));
-    setIsWeatherLoading(false);
-  }
   useEffect(() => {
+    async function updateData() {
+      setIsWeatherLoading(true);
+      setWeatherData(await WeatherRepository.GetFullWeatherByCity(cityName));
+      setIsWeatherLoading(false);
+    }
     updateData();
   }, [cityName]);
 
