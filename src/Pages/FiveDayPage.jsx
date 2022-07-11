@@ -4,6 +4,7 @@ import WeatherRepository from "../API/WeatherRepository";
 import NotFound from "./NotFound";
 import FiveDayMainContent from "../Components/FiveDayMainContent";
 import Loader from "../Components/UI/Loader/Loader";
+import { Helmet } from "react-helmet-async";
 
 const FiveDayPage = ({ data }) => {
   const cityName = useParams().name;
@@ -21,6 +22,14 @@ const FiveDayPage = ({ data }) => {
   }, [cityName]);
   return (
     <div className="container">
+      <Helmet>
+        <title>5 days forecast</title>
+        <meta
+          name="description"
+          content="5 days forecast for WeatherForecast site by Vladyslav Dubovyi"
+        />
+        <link rel="canonical" href="/5Day" />
+      </Helmet>
       {isWeatherLoading ? (
         <Loader />
       ) : weatherData == null ? (

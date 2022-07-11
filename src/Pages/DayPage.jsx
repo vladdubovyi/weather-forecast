@@ -4,6 +4,7 @@ import NotFound from "./NotFound";
 import DayMainContent from "../Components/DayMainContent";
 import WeatherRepository from "../API/WeatherRepository";
 import Loader from "../Components/UI/Loader/Loader";
+import { Helmet } from "react-helmet-async";
 
 const DayPage = () => {
   const cityName = useParams().name;
@@ -21,6 +22,14 @@ const DayPage = () => {
 
   return (
     <div className="container">
+      <Helmet>
+        <title>Daily forecast</title>
+        <meta
+          name="description"
+          content="Daily forecast for WeatherForecast site by Vladyslav Dubovyi"
+        />
+        <link rel="canonical" href="/Day" />
+      </Helmet>
       {isWeatherLoading ? (
         <Loader />
       ) : weatherData == null ? (
